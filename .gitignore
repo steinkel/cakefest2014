@@ -1,0 +1,4 @@
+!empty
+/vendor/*
+/config/app.php
+/tmp/*
