@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Utility\Debugger;
 
 /**
  * Users Controller
@@ -31,8 +32,9 @@ class UsersController extends AppController {
  */
 	public function view($id = null) {
 		$user = $this->Users->get($id, [
-			'contain' => ['Organizations', 'Answers', 'Questions']
+			'contain' => ['Organizations', 'Answers', 'Questions', 'ShortCommentAnswers']
 		]);
+		debug($user);
 		$this->set('user', $user);
 	}
 

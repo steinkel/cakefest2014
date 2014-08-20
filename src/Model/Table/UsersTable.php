@@ -31,6 +31,11 @@ class UsersTable extends Table {
 		$this->hasMany('Questions', [
 			'foreignKey' => 'user_id',
 		]);
+		$this->hasMany('ShortCommentAnswers', [
+			'className' => 'Answers',
+			'foreignKey' => 'user_id',
+			'conditions' => ['CHAR_LENGTH(ShortCommentAnswers.comment) <' => 20]
+		]);
 	}
 
 /**
