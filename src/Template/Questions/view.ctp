@@ -8,7 +8,7 @@
 		</dd>
 		<dt><?= __('User'); ?></dt>
 		<dd>
-			<?= $question->has('user') ? $this->Html->link($question->user->id, ['controller' => 'Users', 'action' => 'view', $question->user->id]) : ''; ?>
+			<?= $question->has('user') ? $this->Html->link($question->user->email, ['controller' => 'Users', 'action' => 'view', $question->user->id]) : ''; ?>
 			&nbsp;
 		</dd>
 		<dt><?= __('Text'); ?></dt>

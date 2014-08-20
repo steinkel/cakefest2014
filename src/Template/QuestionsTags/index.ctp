@@ -9,7 +9,7 @@
 	<?php foreach ($questionsTags as $questionsTag): ?>
 	<tr>
 		<td>
-			<?= $questionsTag->has('question') ? $this->Html->link($questionsTag->question->id, ['controller' => 'Questions', 'action' => 'view', $questionsTag->question->id]) : ''; ?>
+			<?= $questionsTag->has('question') ? $this->Html->link($questionsTag->question->text, ['controller' => 'Questions', 'action' => 'view', $questionsTag->question->id]) : ''; ?>
 		</td>
 		<td>
 			<?= $questionsTag->has('tag') ? $this->Html->link($questionsTag->tag->name, ['controller' => 'Tags', 'action' => 'view', $questionsTag->tag->id]) : ''; ?>

@@ -18,7 +18,7 @@ class QuestionsTable extends Table {
  */
 	public function initialize(array $config) {
 		$this->table('questions');
-		$this->displayField('id');
+		$this->displayField('text');
 		$this->primaryKey('id');
 
 		$this->belongsTo('Users', [

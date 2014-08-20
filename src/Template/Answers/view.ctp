@@ -8,12 +8,12 @@
 		</dd>
 		<dt><?= __('Question'); ?></dt>
 		<dd>
-			<?= $answer->has('question') ? $this->Html->link($answer->question->id, ['controller' => 'Questions', 'action' => 'view', $answer->question->id]) : ''; ?>
+			<?= $answer->has('question') ? $this->Html->link($answer->question->text, ['controller' => 'Questions', 'action' => 'view', $answer->question->id]) : ''; ?>
 			&nbsp;
 		</dd>
 		<dt><?= __('User'); ?></dt>
 		<dd>
-			<?= $answer->has('user') ? $this->Html->link($answer->user->id, ['controller' => 'Users', 'action' => 'view', $answer->user->id]) : ''; ?>
+			<?= $answer->has('user') ? $this->Html->link($answer->user->email, ['controller' => 'Users', 'action' => 'view', $answer->user->id]) : ''; ?>
 			&nbsp;
 		</dd>
 		<dt><?= __('Question Type Option'); ?></dt>

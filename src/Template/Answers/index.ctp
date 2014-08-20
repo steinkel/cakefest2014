@@ -13,10 +13,10 @@
 	<tr>
 		<td><?= h($answer->id); ?>&nbsp;</td>
 		<td>
-			<?= $answer->has('question') ? $this->Html->link($answer->question->id, ['controller' => 'Questions', 'action' => 'view', $answer->question->id]) : ''; ?>
+			<?= $answer->has('question') ? $this->Html->link($answer->question->text, ['controller' => 'Questions', 'action' => 'view', $answer->question->id]) : ''; ?>
 		</td>
 		<td>
-			<?= $answer->has('user') ? $this->Html->link($answer->user->id, ['controller' => 'Users', 'action' => 'view', $answer->user->id]) : ''; ?>
+			<?= $answer->has('user') ? $this->Html->link($answer->user->email, ['controller' => 'Users', 'action' => 'view', $answer->user->id]) : ''; ?>
 		</td>
 		<td>
 			<?= $answer->has('question_type_option') ? $this->Html->link($answer->question_type_option->id, ['controller' => 'QuestionTypeOptions', 'action' => 'view', $answer->question_type_option->id]) : ''; ?>

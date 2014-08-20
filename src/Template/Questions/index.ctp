@@ -12,7 +12,7 @@
 	<tr>
 		<td><?= h($question->id); ?>&nbsp;</td>
 		<td>
-			<?= $question->has('user') ? $this->Html->link($question->user->id, ['controller' => 'Users', 'action' => 'view', $question->user->id]) : ''; ?>
+			<?= $question->has('user') ? $this->Html->link($question->user->email, ['controller' => 'Users', 'action' => 'view', $question->user->id]) : ''; ?>
 		</td>
 		<td><?= h($question->text); ?>&nbsp;</td>
 		<td>

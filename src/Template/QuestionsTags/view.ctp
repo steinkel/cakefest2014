@@ -3,7 +3,7 @@
 	<dl>
 		<dt><?= __('Question'); ?></dt>
 		<dd>
-			<?= $questionsTag->has('question') ? $this->Html->link($questionsTag->question->id, ['controller' => 'Questions', 'action' => 'view', $questionsTag->question->id]) : ''; ?>
+			<?= $questionsTag->has('question') ? $this->Html->link($questionsTag->question->text, ['controller' => 'Questions', 'action' => 'view', $questionsTag->question->id]) : ''; ?>
 			&nbsp;
 		</dd>
 		<dt><?= __('Tag'); ?></dt>
