@@ -4,6 +4,7 @@ namespace App\Model\Table;
 use Cake\ORM\Query;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Utility\Hash;
 
 /**
  * Users Model
@@ -52,6 +53,7 @@ class UsersTable extends Table {
 			->validatePresence('email', 'create')
 			->notEmpty('email')
 			->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table'])
+			->add('email', 'validOrg', ['rule' => 'validOrganizationEmail', 'provider' => 'table'])
 			->validatePresence('password', 'create')
 			->notEmpty('password')
 			->validatePresence('role', 'create')
@@ -67,4 +69,14 @@ class UsersTable extends Table {
 		return $validator;
 	}
 
+	public function validOrganizationEmail($value, $context) {
+		$validDomain = 'org.com';
+		if (Hash::get($context, 'data.organization_id')) {
+			$tokens = explode('@', $value);
+			if ($validDomain !== $tokens[1]) {
+				return "The provided email should be a valid @$validDomain email";
+			}
+		}
+		return true;
+	}
 }
