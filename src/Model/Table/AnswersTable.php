@@ -4,6 +4,11 @@ namespace App\Model\Table;
 use Cake\ORM\Query;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Event\Event;
+use App\Model\Entity\Answer;
+use Cake\Network\Email\Email;
+use Cake\Routing\Router;
+use Cake\Utility\Debugger;
 
 /**
  * Answers Model
@@ -57,4 +62,16 @@ class AnswersTable extends Table {
 		return $validator;
 	}
 
+	public function afterSave(Event $event, Answer $entity, $options) {
+		$email = new Email('default');
+		$result = $email->from('noreply@factionquestions.org')
+			->to('admin@factionquestions.org')
+			->subject(__('New answer!!'))
+			->send(__("Check the new answer here {0}", Router::url([
+				'controller' => 'answers',
+				'action' => 'view',
+				$entity->id,
+			], true)));
+		Debugger::log($result);
+	}
 }
