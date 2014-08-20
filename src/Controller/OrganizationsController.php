@@ -31,6 +31,16 @@ class OrganizationsController extends AppController {
 			'contain' => ['Users']
 		]);
 		$this->set('organization', $organization);
+		debug($this->Organizations->find()
+			->contain(['Users' => [
+				'conditions' => ['Users.active' => 1],
+				'Answers' => [
+					'fields' => ['Answers.comment', 'Answers.user_id']
+				]
+			]])
+			->where(['Organizations.id' => $id])
+			->toArray()
+		);
 	}
 
 /**
