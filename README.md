@@ -21,3 +21,6 @@ cakefest2014
 * vagrant up && vagrant ssh
 * curl -L https://gist.github.com/steinkel/bde2b3b8e792f308c8b7/raw/eee38f6aff865f7cb73fd645bf33283870acfaae/init.sh |bash
 * point your browser to http://localhost:8080
+
+###Database schema
+* https://github.com/steinkel/cakefest2014/raw/master/database.sql
