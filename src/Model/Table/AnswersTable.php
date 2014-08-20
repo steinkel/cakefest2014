@@ -35,6 +35,7 @@ class AnswersTable extends Table {
 		$this->belongsTo('QuestionTypeOptions', [
 			'foreignKey' => 'question_type_option_id',
 		]);
+		$this->addBehavior('NotifyOwner');
 	}
 
 /**
