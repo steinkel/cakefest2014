@@ -152,7 +152,8 @@ DROP TABLE IF EXISTS `questions_tags`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `questions_tags` (
   `question_id` int(11) NOT NULL,
-  `tag_id` int(11) NOT NULL
+  `tag_id` int(11) NOT NULL,
+  PRIMARY KEY (`question_id`, `tag_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
