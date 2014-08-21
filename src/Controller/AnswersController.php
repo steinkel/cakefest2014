@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Error\NotFoundException;
 
 /**
  * Answers Controller
@@ -9,6 +10,17 @@ use App\Controller\AppController;
  * @property App\Model\Table\AnswersTable $Answers
  */
 class AnswersController extends AppController {
+
+	public $components = ['Security'];
+
+	public function beforeFilter(\Cake\Event\Event $event) {
+		parent::beforeFilter($event);
+		$this->Security->config('blackHoleCallback', 'blackhole');
+	}
+
+	public function blackhole($type) {
+		throw new NotFoundException();
+	}
 
 /**
  * Index method
