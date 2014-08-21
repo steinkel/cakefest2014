@@ -68,4 +68,20 @@ class AnswersTable extends Table {
 		return $query->where(['Answers.user_id' => $user]);
 	}
 
+	public function findCountByOrg(Query $query, $options = []) {
+		return $query
+			->select([
+				'org' => 'Organizations.name',
+				'total' => $query->func()->count('*')
+			])
+			->contain('Users.Organizations')
+			->group(['Organizations.id'])
+			->formatResults(function($results) {
+				return $results->map(function($row) {
+					unset($row->user);
+					return $row;
+				});
+			});
+	}
+
 }

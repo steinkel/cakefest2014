@@ -44,4 +44,17 @@ class OrganizationsTable extends Table {
 		return $validator;
 	}
 
+	public function findWithTotalAnswers(Query $query) {
+		return $query
+			->contain('Users.Answers')
+			->formatResults(function($results) {
+				return $results->map(function($row) {
+					$row->total_answers = collection($row->users)
+						->extract('answers')
+						->count();
+					return $row;
+				});
+			});
+	}
+	
 }
