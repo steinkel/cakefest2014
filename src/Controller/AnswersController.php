@@ -34,6 +34,7 @@ class AnswersController extends AppController {
 			'contain' => ['Questions', 'Users', 'QuestionTypeOptions']
 		]);
 		$this->set('answer', $answer);
+		$this->Flash->big('unnecessary big message!!');
 	}
 
 /**
