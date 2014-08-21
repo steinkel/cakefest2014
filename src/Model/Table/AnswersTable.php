@@ -63,4 +63,9 @@ class AnswersTable extends Table {
 		return $validator;
 	}
 
+	public function findByUser(Query $query, $options = []) {
+		$user = $options['user'];
+		return $query->where(['Answers.user_id' => $user]);
+	}
+
 }

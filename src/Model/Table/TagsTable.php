@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
@@ -26,6 +27,7 @@ class TagsTable extends Table {
 			'targetForeignKey' => 'question_id',
 			'joinTable' => 'questions_tags',
 		]);
+		$this->hasMany('QuestionsTags');
 	}
 
 /**
@@ -42,6 +44,16 @@ class TagsTable extends Table {
 			->notEmpty('name');
 
 		return $validator;
+	}
+
+	public function findInBooleanQuestions(Query $query, $options = []) {
+		$questionsFilter = $this->Questions
+			->find('booleanQuestions')
+			->select(['id']);
+		return $query
+			->distinct(['Tags.id'])
+			->matching('QuestionsTags')
+			->where(['QuestionsTags.question_id IN' => $questionsFilter]);
 	}
 
 }

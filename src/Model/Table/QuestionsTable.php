@@ -24,12 +24,14 @@ class QuestionsTable extends Table {
 
 		$this->belongsTo('Users', [
 			'foreignKey' => 'user_id',
+			'strategy' => 'select'
 		]);
 		$this->belongsTo('QuestionTypes', [
 			'foreignKey' => 'question_type_id',
 		]);
 		$this->hasMany('Answers', [
 			'foreignKey' => 'question_id',
+			'strategy' => 'subquery'
 		]);
 		$this->belongsToMany('Tags', [
 			'foreignKey' => 'question_id',
@@ -126,10 +128,22 @@ class QuestionsTable extends Table {
 			});
 	}
 
+	public function findAnsweredBy(Query $query, $options = []) {
+		return $query->matching('Answers', function($query) use ($options) {
+			return $query->find('byUser', $options);
+		});
+	}
+
 	public function addPreferences($id) {
 		$entity = $this->get($id);
 		$entity->preferences = ['foo' => 'bar', 'something' => 'crazy'];
 		$this->save($entity);
+	}
+
+	public function findCountByType(Query $query, $options = []) {
+		return $query
+			->select(['question_type_id', 'total' => $query->func()->count('*')])
+			->group(['question_type_id']);
 	}
 
 }

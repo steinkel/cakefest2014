@@ -28,3 +28,10 @@ function pj($data) {
 }
 
 class_alias('Cake\ORM\TableRegistry', 'R');
+
+use Cake\Log\Log;
+Log::config('queries', [
+    'className' => 'Console',
+    'stream' => 'php://stderr',
+    'scopes' => ['queriesLog']
+]);
