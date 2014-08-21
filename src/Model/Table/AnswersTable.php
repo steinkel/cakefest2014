@@ -35,7 +35,7 @@ class AnswersTable extends Table {
 		$this->belongsTo('QuestionTypeOptions', [
 			'foreignKey' => 'question_type_option_id',
 		]);
-		$this->addBehavior('NotifyOwner');
+		$this->addBehavior('NotifyOwner', ['log' => true]);
 	}
 
 /**
@@ -63,16 +63,4 @@ class AnswersTable extends Table {
 		return $validator;
 	}
 
-	public function afterSave(Event $event, Answer $entity, $options) {
-		$email = new Email('default');
-		$result = $email->from('noreply@factionquestions.org')
-			->to('admin@factionquestions.org')
-			->subject(__('New answer!!'))
-			->send(__("Check the new answer here {0}", Router::url([
-				'controller' => 'answers',
-				'action' => 'view',
-				$entity->id,
-			], true)));
-		Debugger::log($result);
-	}
 }

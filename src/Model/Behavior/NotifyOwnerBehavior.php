@@ -12,10 +12,17 @@ use Cake\Utility\Debugger;
 
 class NotifyOwnerBehavior extends Behavior {
 
+	protected $_defaultConfig = [
+		'ownerTable' => 'Users',
+		'ownerField' => 'user_id',
+		'log' => false,
+	];
+
 	public function afterSave(Event $event, Entity $entity, $options) {
+		$config = $this->config();
 		$email = new Email('default');
 		$singularName = Inflector::singularize($entity->source());
-		$owner = TableRegistry::get('Users')->get($entity->user_id);
+		$owner = TableRegistry::get($config['ownerTable'])->get($entity->$config['ownerField']);
 		$result = $email->from('noreply@factionquestions.org')
 			->to($owner->email)
 			->subject(__('New {0}!!', $singularName))
@@ -24,6 +31,8 @@ class NotifyOwnerBehavior extends Behavior {
 				'action' => 'view',
 				$entity->id,
 			], true)));
-		Debugger::log($result);
+		if ($config['log']) {
+			Debugger::log($result);
+		}
 	}
 }
