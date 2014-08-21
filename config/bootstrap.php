@@ -170,3 +170,7 @@ Request::addDetector('tablet', function($request) {
 DispatcherFactory::add('Asset');
 DispatcherFactory::add('Routing');
 DispatcherFactory::add('ControllerFactory');
+
+use Cake\Database\Type;
+
+Type::map('json', 'App\Database\Type\JsonType');

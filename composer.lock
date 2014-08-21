@@ -1,8 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
-        "This file is @generated automatically"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
     "hash": "92a410effee071d5fbb268bcfa051a1c",
     "packages": [
@@ -117,12 +116,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "c77b3517cf8a9ff2ccec73c541e09e91be0b6b00"
+                "reference": "2989fd209386983e8d3b2b02c5681ebd298b3c6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/c77b3517cf8a9ff2ccec73c541e09e91be0b6b00",
-                "reference": "c77b3517cf8a9ff2ccec73c541e09e91be0b6b00",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/2989fd209386983e8d3b2b02c5681ebd298b3c6e",
+                "reference": "2989fd209386983e8d3b2b02c5681ebd298b3c6e",
                 "shasum": ""
             },
             "require": {
@@ -158,7 +157,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-08-20 11:06:26"
+            "time": "2014-08-21 09:25:40"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -341,7 +340,6 @@
     "stability-flags": {
         "cakephp/cakephp": 20
     },
-    "prefer-stable": false,
     "platform": {
         "php": ">=5.4.19"
     },

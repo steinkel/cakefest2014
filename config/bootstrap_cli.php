@@ -22,3 +22,9 @@ use Cake\Core\Configure;
 // Set logs to different files so they don't have permission conflicts.
 Configure::write('Log.debug.file', 'cli-debug');
 Configure::write('Log.error.file', 'cli-error');
+
+function pj($data) {
+	return json_encode($data, JSON_PRETTY_PRINT);
+}
+
+class_alias('Cake\ORM\TableRegistry', 'R');
