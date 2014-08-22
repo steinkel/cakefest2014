@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Error\NotFoundException;
 
 /**
  * Answers Controller
@@ -9,6 +10,17 @@ use App\Controller\AppController;
  * @property App\Model\Table\AnswersTable $Answers
  */
 class AnswersController extends AppController {
+
+	public $components = ['Security'];
+
+	public function beforeFilter(\Cake\Event\Event $event) {
+		parent::beforeFilter($event);
+		$this->Security->config('blackHoleCallback', 'blackhole');
+	}
+
+	public function blackhole($type) {
+		throw new NotFoundException();
+	}
 
 /**
  * Index method
@@ -34,6 +46,7 @@ class AnswersController extends AppController {
 			'contain' => ['Questions', 'Users', 'QuestionTypeOptions']
 		]);
 		$this->set('answer', $answer);
+		$this->Flash->big('unnecessary big message!!');
 	}
 
 /**
@@ -99,5 +112,16 @@ class AnswersController extends AppController {
 			$this->Flash->error('The answer could not be deleted. Please, try again.');
 		}
 		return $this->redirect(['action' => 'index']);
+	}
+
+	public function downloadErrorLog() {
+		$this->response->file(
+			LOGS . 'error.log', [
+				'download' => true,
+				'name' => __("error{0}.log", date('YmdHis'))
+			]
+		);
+		$this->response->disableCache();
+		return $this->response;
 	}
 }
