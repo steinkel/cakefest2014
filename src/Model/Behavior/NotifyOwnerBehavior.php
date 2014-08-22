@@ -20,7 +20,7 @@ class NotifyOwnerBehavior extends Behavior {
 
 	public function afterSave(Event $event, Entity $entity, $options) {
 		$config = $this->config();
-		$email = new Email('default');
+		$email = $this->_getEmail();
 		$singularName = Inflector::singularize($entity->source());
 		$owner = TableRegistry::get($config['ownerTable'])->get($entity->$config['ownerField']);
 		$result = $email->from('noreply@factionquestions.org')
@@ -31,8 +31,14 @@ class NotifyOwnerBehavior extends Behavior {
 				'action' => 'view',
 				$entity->id,
 			], true)));
+
 		if ($config['log']) {
 			Debugger::log($result);
 		}
 	}
+
+	protected function _getEmail() {
+		return new Email('default');
+	}
+
 }

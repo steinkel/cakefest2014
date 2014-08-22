@@ -24,4 +24,21 @@ class Question extends Entity {
 		'questions_tags' => true,
 	];
 
+	protected $_hidden = [
+		'user_id', 'question_type_id',
+		'question_type'
+	];
+
+	protected $_virtual = [
+		'type'
+	];
+
+	protected function _getType() {
+		return $this->question_type->name;
+	}
+
+	protected function _getCreator() {
+		return $this->user->full_name;
+	}
+
 }

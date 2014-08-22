@@ -34,5 +34,5 @@ class AppController extends Controller {
  *
  * @var array
  */
-	public $components = ['Flash'];
+	public $components = ['Flash', 'RequestHandler'];
 }

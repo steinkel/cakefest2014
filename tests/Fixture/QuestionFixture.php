@@ -34,10 +34,19 @@ class QuestionFixture extends TestFixture {
  */
 	public $records = [
 		[
-			'id' => 1,
 			'user_id' => 1,
-			'text' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
+			'text' => 'This is the first question',
 			'question_type_id' => 1
+		],
+		[
+			'user_id' => 2,
+			'text' => 'This is the second question',
+			'question_type_id' => 2
+		],
+		[
+			'user_id' => 1,
+			'text' => 'This is the third question',
+			'question_type_id' => 3
 		],
 	];
 

@@ -48,4 +48,29 @@ class QuestionsTableTest extends TestCase {
 		parent::tearDown();
 	}
 
+/**
+ * Tests that failing to pass a user will throw exception
+ *
+ * @expectedException InvalidArgumentException
+ */
+	public function testFindByUserError() {
+		$result = $this->Questions->find('byUser');
+	}
+
+	public function testFindByUser() {
+		$result = $this->Questions->find('byUser', ['user' => 1]);
+		$users = $result->extract('user_id')->toArray();
+		$this->assertEquals([1], array_unique($users));
+	}
+
+	public function testFindByUserNoDatabaseAccess() {
+		$expected = $this->Questions->query();
+		$expected
+			->where(['user_id IN' => 1])
+			->applyOptions(['user' => 1]);
+
+		$result = $this->Questions->find('byUser', ['user' => 1]);
+		$this->assertEquals($expected, $result);
+	}
+
 }

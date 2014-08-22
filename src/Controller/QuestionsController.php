@@ -20,6 +20,11 @@ class QuestionsController extends AppController {
 			'contain' => ['Users', 'QuestionTypes']
 		];
 		$this->set('questions', $this->paginate($this->Questions));
+		$this->set('success', true);
+		$this->set('_serialize', [
+			'data' => 'questions',
+			'success'
+		]);
 	}
 
 /**
@@ -44,17 +49,38 @@ class QuestionsController extends AppController {
 	public function add() {
 		$question = $this->Questions->newEntity($this->request->data);
 		if ($this->request->is('post')) {
-			if ($this->Questions->save($question)) {
-				$this->Flash->success('The question has been saved.');
-				return $this->redirect(['action' => 'index']);
-			} else {
-				$this->Flash->error('The question could not be saved. Please, try again.');
+			if ($response = $this->_saveAndNotify($question)) {
+				return $response;
 			}
 		}
 		$users = $this->Questions->Users->find('list');
 		$questionTypes = $this->Questions->QuestionTypes->find('list');
 		$tags = $this->Questions->Tags->find('list');
 		$this->set(compact('question', 'users', 'questionTypes', 'tags'));
+	}
+
+	protected function _saveAndNotify($question) {
+		$success = $this->Questions->save($question);
+		$response = false;
+
+		if ($success && !$this->request->accepts('application/json')) {
+			$response = $this->redirect(['action' => 'index']);
+		}
+
+		if ($success && $this->request->accepts('application/json')) {
+			$question->virtualProperties([]);
+			$this->set('data', $question);
+			$this->set('success', true);
+			$this->set('_serialize', ['data', 'success']);
+			return;
+		}
+		
+		if ($response) {
+			$this->Flash->success('The question has been saved.');
+			return $response;
+		}
+
+		$this->Flash->error('The question could not be saved. Please, try again.');
 	}
 
 /**

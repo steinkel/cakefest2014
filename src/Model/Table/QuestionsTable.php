@@ -39,6 +39,7 @@ class QuestionsTable extends Table {
 			'joinTable' => 'questions_tags',
 		]);
 		$this->addBehavior('NotifyOwner');
+		$this->addBehavior('Boundary');
 	}
 
 /**
@@ -81,6 +82,9 @@ class QuestionsTable extends Table {
 	}
 
 	public function findByUser(Query $query, $options = []) {
+		if (empty($options['user'])) {
+			throw new \InvalidArgumentException('You need to pass a user');
+		}
 		$user = $options['user'];
 		return $query->where(['user_id IN' => $user]);
 	}
