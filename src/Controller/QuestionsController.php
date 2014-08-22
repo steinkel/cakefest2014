@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\View\CellTrait;
 
 /**
  * Questions Controller
@@ -9,6 +10,8 @@ use App\Controller\AppController;
  * @property App\Model\Table\QuestionsTable $Questions
  */
 class QuestionsController extends AppController {
+
+ use CellTrait;
 
 /**
  * Index method
@@ -126,4 +129,12 @@ class QuestionsController extends AppController {
 		}
 		return $this->redirect(['action' => 'index']);
 	}
+
+	public function top_users() {
+		$this->response->body(
+			(string)$this->cell('TopAnswerer', [], ['limit' => 1])
+		);
+		return $this->response;
+	}
+
 }

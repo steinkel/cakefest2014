@@ -79,4 +79,13 @@ class UsersTable extends Table {
 		}
 		return true;
 	}
+
+	public function findTopAnswerers(Query $query) {
+		return $query
+			->select(['Users.first_name', 'Users.last_name'])
+			->select(['total_answers' => $query->func()->count('Answers.id')])
+			->matching('Answers')
+			->group(['Users.id'])
+			->order(['total_answers' => 'desc']);
+	}
 }

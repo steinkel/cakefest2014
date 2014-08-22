@@ -1,3 +1,4 @@
+<?php $this->extend('/Layout/index'); ?>
 <div class="answers index">
 	<h2><?= __('Answers'); ?></h2>
 	<table cellpadding="0" cellspacing="0">

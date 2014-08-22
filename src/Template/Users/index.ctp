@@ -1,3 +1,4 @@
+<?php $this->extend('/Layout/index'); ?>
 <div class="users index">
 	<h2><?= __('Users'); ?></h2>
 	<table cellpadding="0" cellspacing="0">

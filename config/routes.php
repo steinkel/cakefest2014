@@ -49,7 +49,22 @@ Router::scope('/', function($routes) {
  */
 	$routes->fallbacks();
 
-	$routes->resources('Questions');
+	$routes->resources('Questions', ['only' => ['index', 'view']]);
+});
+
+Router::scope('/questions', ['controller' => 'Questions'], function($routes) {
+	$routes->connect('/', ['action' => 'index'], ['_name' => 'Questions::index']);
+	$routes->connect('/:action');
+});
+
+Router::scope('/users', ['controller' => 'Users'], function($routes) {
+	$routes->connect('/', ['action' => 'index'], ['_name' => 'Users::index']);
+	$routes->connect('/add', ['action' => 'index'], ['_name' => 'Users::add']);
+	$routes->connect('/:action');
+});
+
+Router::scope('/api', ['_ext' => 'json'], function($routes) {
+	$routes->fallbacks();
 });
 
 /**
@@ -57,3 +72,6 @@ Router::scope('/', function($routes) {
  * how to customize the loading of plugin routes.
  */
 	Plugin::routes();
+
+
+

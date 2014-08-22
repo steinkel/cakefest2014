@@ -29,7 +29,7 @@ class AnswersController extends AppController {
  */
 	public function index() {
 		$this->paginate = [
-			'contain' => ['Questions', 'Users', 'QuestionTypeOptions']
+			'contain' => ['Users']
 		];
 		$this->set('answers', $this->paginate($this->Answers));
 	}
