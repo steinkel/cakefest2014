@@ -34,7 +34,7 @@ class UsersController extends AppController {
 		$user = $this->Users->get($id, [
 			'contain' => ['Organizations', 'Answers', 'Questions', 'ShortCommentAnswers']
 		]);
-		debug($user);
+		//debug($user);
 		$this->set('user', $user);
 	}
 

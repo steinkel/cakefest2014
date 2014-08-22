@@ -51,6 +51,30 @@ class UserFixture extends TestFixture {
 			'modified' => '2014-08-20 21:57:36',
 			'organization_id' => 1
 		],
+		[
+			'id' => 2,
+			'email' => 'Lorem ipsum dolor sit amet',
+			'password' => 'Lorem ipsum dolor sit amet',
+			'role' => 'Lorem ipsum dolor sit amet',
+			'active' => 1,
+			'first_name' => 'Lorem ipsum dolor sit amet',
+			'last_name' => 'Lorem ipsum dolor sit amet',
+			'created' => '2014-08-20 21:57:36',
+			'modified' => '2014-08-20 21:57:36',
+			'organization_id' => 1
+		],
+		[
+			'id' => 3,
+			'email' => 'Lorem ipsum dolor sit amet',
+			'password' => 'Lorem ipsum dolor sit amet',
+			'role' => 'Lorem ipsum dolor sit amet',
+			'active' => 0,
+			'first_name' => 'Lorem ipsum dolor sit amet',
+			'last_name' => 'Lorem ipsum dolor sit amet',
+			'created' => '2014-08-20 21:57:36',
+			'modified' => '2014-08-20 21:57:36',
+			'organization_id' => 1
+		],
 	];
 
 }

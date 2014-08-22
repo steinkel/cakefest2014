@@ -79,4 +79,8 @@ class UsersTable extends Table {
 		}
 		return true;
 	}
+
+	public function activeUsers() {
+		return $this->find()->where(['active' => 1])->count();
+	}
 }

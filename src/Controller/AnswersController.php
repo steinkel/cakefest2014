@@ -47,6 +47,7 @@ class AnswersController extends AppController {
 		]);
 		$this->set('answer', $answer);
 		$this->Flash->big('unnecessary big message!!');
+		debug($this->Answers->find('home'));
 	}
 
 /**

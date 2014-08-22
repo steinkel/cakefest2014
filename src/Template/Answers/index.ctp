@@ -1,3 +1,15 @@
+<?php
+$this->start('block');
+echo "I've started a block";
+$this->end();
+$this->prepend('block', 'Prepending...');
+$this->append('block', 'Appending...');
+$this->start('block');
+echo "Started a new one";
+$this->end();
+$this->prepend('block', 'Prepending...');
+?>
+
 <div class="answers index">
 	<h2><?= __('Answers'); ?></h2>
 	<table cellpadding="0" cellspacing="0">

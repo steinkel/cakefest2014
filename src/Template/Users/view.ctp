@@ -38,12 +38,12 @@
 		</dd>
 		<dt><?= __('Created'); ?></dt>
 		<dd>
-			<?= h($user->created); ?>
+			<?= $this->Time->timeAgoInWords($user->created); ?>
 			&nbsp;
 		</dd>
 		<dt><?= __('Modified'); ?></dt>
 		<dd>
-			<?= h($user->modified); ?>
+			<?= $this->Time->timeAgoInWords($user->modified); ?>
 			&nbsp;
 		</dd>
 		<dt><?= __('Organization'); ?></dt>

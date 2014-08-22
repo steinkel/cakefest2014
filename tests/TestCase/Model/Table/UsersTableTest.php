@@ -23,7 +23,7 @@ class UsersTableTest extends TestCase {
 		'app.question_type',
 		'app.question_type_option',
 		'app.tag',
-		'app.questions_tag'
+		'app.questions_tag',
 	];
 
 /**
@@ -47,5 +47,35 @@ class UsersTableTest extends TestCase {
 
 		parent::tearDown();
 	}
+
+/**
+ * testValidOrganizationEmail method
+ *
+ * @return void
+ * @dataProvider validOrganizationEmailProvider
+ */
+	public function testValidOrganizationEmail($organization_id, $email, $expected) {
+		$result = $this->Users->validOrganizationEmail($email, ['data' => ['organization_id' => $organization_id]]);
+		$this->assertEquals($expected, $result);
+	}
+
+	public function validOrganizationEmailProvider() {
+		return [
+			[null, 'dont@care.com', true],
+			[1, 'true@org.com', true],
+			[1, 'fail@example.com', "The provided email should be a valid @org.com email"],
+		];
+	}
+
+/**
+ * testActiveUsers method
+ *
+ * @return void
+ */
+	public function testActiveUsers() {
+		$this->assertEquals(2, $this->Users->activeUsers());
+	}
+
+
 
 }

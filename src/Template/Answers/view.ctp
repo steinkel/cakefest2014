@@ -23,7 +23,7 @@
 		</dd>
 		<dt><?= __('Comment'); ?></dt>
 		<dd>
-			<?= h($answer->comment); ?>
+			<?= $this->Text->autolink($answer->comment); ?>
 			&nbsp;
 		</dd>
 	</dl>
